@@ -294,10 +294,17 @@ public class PDF {
             break;
         }
 
-        templateBinding.put("session", Scope.Session.current());
-        templateBinding.put("request", Http.Request.current());
-        templateBinding.put("flash", Scope.Flash.current());
-        templateBinding.put("params", Scope.Params.current());
+        if (Scope.Session.current() != null)
+            templateBinding.put("session", Scope.Session.current());
+
+        if (Http.Request.current() != null)
+            templateBinding.put("request", Http.Request.current());
+
+        if (Scope.Flash.current() != null)
+            templateBinding.put("flash", Scope.Flash.current());
+
+        if (Scope.Params.current() != null)
+            templateBinding.put("params", Scope.Params.current());
         try {
             templateBinding.put("errors", Validation.errors());
         } catch (Exception ex) {
