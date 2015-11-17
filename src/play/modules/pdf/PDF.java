@@ -183,7 +183,7 @@ public class PDF {
      */
     public static void writePDF(OutputStream out, Object... args) {
         final Http.Request request = Http.Request.current();
-        final String format = request.format;
+        final String format = request == null? null : request.format;
 
         PDFDocument singleDoc = new PDFDocument();
         MultiPDFDocuments docs = null;
